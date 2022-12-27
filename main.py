@@ -25,11 +25,6 @@ class Point:
         win32api.SetCursorPos((self.x, self.y))
 
 
-points: List[Point] = [Point(1939, 389), Point(1661, 784), Point(2042, 1241)]
-sleep_time = List = [2.0, 10.0, 2.0]
-step = 0
-
-
 def click(point: Point = None):
 
     point.move_to_pos()
@@ -81,11 +76,16 @@ def is_ad_done():
     return True
 
 
-def main():
+def main(points: List[Point], sleep_time: List[float]):
     ensure_focused_window()
 
     while not keyboard.is_pressed("q"):
         for index, (point, tts) in enumerate(zip(points, sleep_time)):
+
+            # we have to account for this in the for loop as well.
+            if keyboard.is_pressed("q"):
+                return
+
             if index == 2:
                 is_ad_done()
             click(point)
@@ -94,5 +94,8 @@ def main():
 
 if __name__ == "__main__":
     time.sleep(3)
+
+    points: List[Point] = [Point(1939, 389), Point(1661, 784), Point(2042, 1241)]
+    sleep_time = List = [2.0, 10.0, 2.0]
 
     main()
