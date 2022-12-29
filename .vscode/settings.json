@@ -1,3 +1,12 @@
 {
-  "cSpell.words": ["LEFTDOWN", "LEFTUP", "MOUSEEVENTF"]
+  "cSpell.words": [
+    "appwindows",
+    "CCOEFF",
+    "LEFTDOWN",
+    "LEFTUP",
+    "MOUSEEVENTF",
+    "mult",
+    "mylst",
+    "pscmd"
+  ]
 }

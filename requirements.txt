@@ -3,3 +3,4 @@ keyboard
 pillow
 pywin32
 opencv-python
+plyer
