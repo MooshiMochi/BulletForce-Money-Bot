@@ -50,7 +50,7 @@ if __name__ == "__main__":
     if not exc:
         notification.notify(
             title="BulletForce Money Bot",
-            message=f"The bot has finished successfully!",
+            message=f"The bot has been stopped.",
             timeout=5,
             app_icon="src/python.ico",
         )
