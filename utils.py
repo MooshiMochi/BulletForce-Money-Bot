@@ -91,7 +91,7 @@ def is_ad_done() -> bool:
     return x
 
 
-def find_game_screen() -> Point:
+def find_game_screen() -> tuple[Point, bool]:
     img_path = "src/main_screen.png"
     assert os.path.exists(img_path), "Image not found"
 
@@ -112,7 +112,7 @@ def find_game_screen() -> Point:
     else:
         print("Image not found")
 
-    return Point(*max_loc)
+    return Point(*max_loc), max_val >= 0.5
 
 
 def find_image_on_screen(image_path: str) -> tuple[Point, bool]:
