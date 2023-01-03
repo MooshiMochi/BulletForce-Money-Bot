@@ -1,4 +1,6 @@
 import keyboard
+import win32api
+import win32con
 from plyer import notification
 from pyautogui import position
 
@@ -6,16 +8,21 @@ from objects import Point
 from utils import ensure_focused_window, make_money, sleep
 
 
-def init_config() -> Point | None:
-    hotkey = "enter"
+def init() -> Point | None:
+
     notification.notify(
         title="BulletForce Money Bot",
-        message=f"Please place your mouse over the full screen button and press '{hotkey}'!",
+        message=f"Please click the top left and the bottom right corner of the game screen!",
         timeout=10,
     )
 
-    full_screen_coord = Point(0, 0)
-    while not keyboard.is_pressed(hotkey):
+    tl, br = Point(0, 0), Point(0, 0)
+
+    full_screen_coord, w, h = Point(0, 0), None, None
+
+    # check if the user clicked the mouse
+
+    while not keyboard.is_pressed():
         if keyboard.is_pressed("q"):
             return
         full_screen_coord = Point(*position())

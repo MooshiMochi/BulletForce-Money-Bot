@@ -194,7 +194,7 @@ def make_money(screen_xy: Point, screen_width: int, screen_height: int):
     sleep(1)
 
     buttons = [Buttons.get_ads, Buttons.watch_ads, Buttons.ad_done]
-    wait_times = [2.0, 12.0, 2.0]
+    wait_times = [1.0, 12.0, 1.0]
 
     for i in range(len(buttons)):
         buttons[i] = buttons[i].get_screen_coords(
