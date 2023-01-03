@@ -91,32 +91,7 @@ def is_ad_done() -> bool:
     return x
 
 
-def find_game_screen() -> tuple[Point, bool]:
-    img_path = "src/main_screen.png"
-    assert os.path.exists(img_path), "Image not found"
-
-    ensure_focused_window()
-    sleep(1)
-
-    screen = pyautogui.screenshot()
-    screen = cv2.cvtColor(np.array(screen), cv2.COLOR_RGB2BGR)
-    screen = cv2.cvtColor(screen, cv2.COLOR_BGR2GRAY)
-
-    template = cv2.imread(img_path, 0)
-
-    result = cv2.matchTemplate(screen, template, cv2.TM_CCOEFF_NORMED)
-    min_val, max_val, min_loc, max_loc = cv2.minMaxLoc(result)
-
-    if max_val > 0.5:
-        print(f"Game screen found at: {max_loc}")
-    else:
-        print("Image not found")
-
-    return Point(*max_loc), max_val >= 0.5
-
-
 def find_image_on_screen(image_path: str) -> tuple[Point, bool]:
-    # img_path = "src/main_screen.png"
     assert os.path.exists(image_path), "Image not found"
 
     ensure_focused_window()
@@ -134,9 +109,9 @@ def find_image_on_screen(image_path: str) -> tuple[Point, bool]:
     threshold = 0.7
 
     if max_val >= threshold:
-        print(f"Game screen found at: {max_loc}")
+        print(f"Image {image_path} found at: {max_loc}")
     else:
-        print("Image not found")
+        print(f"Image {image_path} not found. Max value: {max_val}")
 
     return Point(*max_loc), max_val >= threshold
 
